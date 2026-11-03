@@ -80,3 +80,5 @@ body>header nav a:hover{color:#fff;text-decoration-color:#fff}
 @media(max-width:760px){.project-heading{padding-bottom:12px}.project-heading .eyebrow{margin-top:8px}}
 .closing{margin-top:30px;padding-top:25px}
 @media(max-width:760px){.closing{margin-top:25px;padding-top:20px}}
+.project-section.no-image{grid-template-columns:minmax(0,1fr)}
+.project-section.no-image>div{max-width:740px}
