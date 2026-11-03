@@ -82,3 +82,66 @@ body>header nav a:hover{color:#fff;text-decoration-color:#fff}
 @media(max-width:760px){.closing{margin-top:25px;padding-top:20px}}
 .project-section.no-image{grid-template-columns:minmax(0,1fr)}
 .project-section.no-image>div{max-width:740px}
+
+/* Project category menu works on hover, keyboard focus, and touch. */
+.projects-nav{position:relative;display:flex;align-items:center;gap:4px}
+.projects-nav details{position:static}
+.projects-nav summary{list-style:none;cursor:pointer;padding:4px;line-height:1}
+.projects-nav summary::-webkit-details-marker{display:none}
+.projects-nav summary:focus-visible{outline:2px solid white;outline-offset:3px}
+.projects-menu{display:none;position:absolute;top:100%;left:-14px;min-width:190px;padding:8px;background:#12564d;z-index:10;box-shadow:0 8px 20px #102e2b30}
+.projects-menu a{display:block;padding:10px 12px;color:#fff}
+.projects-nav:hover .projects-menu,.projects-nav:focus-within .projects-menu,.projects-nav details[open] .projects-menu{display:block}
+.category-projects{padding:10px 0 70px}
+.projects-nav details[open] + .projects-menu{display:block}
+
+/* Align project navigation and section label across the same row. */
+.project-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;column-gap:20px;row-gap:10px}
+.project-heading>a{justify-self:start}
+.project-heading>.eyebrow{justify-self:end;text-align:right;margin:0}
+.project-heading>h1,.project-heading>.lead,.project-heading>p:not(.eyebrow){grid-column:1 / -1}
+.project-heading>.lead{max-width:none}
+.closing p:not(.eyebrow){max-width:none}
+
+/* Expand the header itself for the project category menu. */
+.project-card p{max-width:none}
+body>header{position:relative;transition:padding-bottom .18s ease}
+body>header:has(.projects-nav:hover),body>header:has(.projects-nav:focus-within),body>header:has(.projects-nav details[open]){padding-bottom:68px}
+.projects-menu{top:calc(100% + 20px);left:0;min-width:180px;padding:0;background:transparent;box-shadow:none}
+.projects-menu a{padding:8px 0;color:#fff}
+@media(max-width:760px){body>header:has(.projects-nav:hover),body>header:has(.projects-nav:focus-within),body>header:has(.projects-nav details[open]){padding-bottom:65px}.projects-menu{top:calc(100% + 12px)}}
+@media(prefers-reduced-motion:reduce){body>header{transition:none}}
+.projects-nav::after{content:"";position:absolute;left:0;top:100%;width:180px;height:20px}
+
+/* Project image viewer */
+.image-expand{display:block;width:100%;height:100%;padding:0;border:0;background:transparent;cursor:zoom-in}
+.image-expand:focus-visible{outline:3px solid var(--green);outline-offset:4px}
+.project-section figure.text-height-image .image-expand{position:absolute;inset:0}
+.project-section figure.text-height-image .image-expand img{position:static}
+.image-viewer{position:fixed;max-width:none;max-height:none;width:100%;height:100%;padding:32px;border:0;background:transparent;overflow:auto;color:#fff}
+.image-viewer::backdrop{background:rgba(4,15,16,.88)}
+.image-viewer[open]{display:flex;justify-content:center;align-items:center}
+.image-viewer figure{margin:auto;display:flex;flex-direction:column;align-items:center;max-width:min(95vw,1400px)}
+.image-viewer figure img{display:block;max-width:100%;max-height:80vh;width:auto;height:auto;object-fit:contain}
+.image-viewer figcaption{margin-top:14px;color:#fff;font-size:14px;text-align:center}
+.image-viewer figcaption[hidden]{display:none}
+.image-viewer-close{position:fixed;top:16px;right:22px;border:0;background:transparent;color:#fff;font-size:38px;line-height:1;cursor:pointer;z-index:1}
+.image-viewer-close:focus-visible{outline:2px solid #fff;outline-offset:4px}
+@media(max-width:760px){.project-section figure.text-height-image .image-expand{position:static;height:auto}.image-viewer{padding:48px 16px 20px}.image-viewer figure img{max-height:75vh}}
+.projects-nav::after{width:100%}
+.project-section figure:has(.image-expand + .image-expand){display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center;background:transparent;padding:0}
+.project-section figure:has(.image-expand + .image-expand) .image-expand{height:240px}
+.project-section figure:has(.image-expand + .image-expand) img{height:100%;object-fit:contain}
+@media(max-width:760px){.project-section figure:has(.image-expand + .image-expand) .image-expand{height:170px}}
+body.image-viewer-open{overflow:hidden}
+.image-viewer figure img{transform-origin:center center;will-change:transform}
+.image-viewer figure{overflow:visible}
+/* Gallery buttons follow the image height so captions remain in normal flow. */
+.gallery-section .image-expand{height:auto;aspect-ratio:4 / 3}
+.gallery-section .image-expand img{height:100%;aspect-ratio:auto}
+.gallery-section figcaption{margin-top:10px}
+.gallery-section{padding-bottom:48px}
+.gallery-section{padding-bottom:12px}
+@media (prefers-reduced-motion: no-preference){.image-viewer figure img{transition:transform 120ms ease-out}}
+/* Keep the final content-to-footer spacing consistent on every page. */
+.closing,.category-projects,.gallery-section{padding-bottom:12px}
