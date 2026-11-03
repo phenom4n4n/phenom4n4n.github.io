@@ -145,3 +145,20 @@ body.image-viewer-open{overflow:hidden}
 @media (prefers-reduced-motion: no-preference){.image-viewer figure img{transition:transform 120ms ease-out}}
 /* Keep the final content-to-footer spacing consistent on every page. */
 .closing,.category-projects,.gallery-section{padding-bottom:12px}
+.project-heading>.project-dates{grid-column:1 / -1;margin:0;color:var(--muted);font-size:14px;letter-spacing:.02em}
+
+.project-section figure.manufacturing-images:has(.image-expand + .image-expand){grid-template-columns:1fr 1fr}
+.project-section figure.manufacturing-images .image-expand:last-child{grid-column:1 / -1;height:200px}
+.project-section figure.results-photo .image-expand{display:block;width:100%;aspect-ratio:16 / 9;overflow:hidden}
+.project-section figure.results-photo .image-expand img{width:100%;height:100%;object-fit:cover;object-position:center 66%}
+
+.project-section figure:has(.section-image-item){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.project-section .section-image-item .image-expand{height:240px}
+.project-section .section-image-item img{height:100%;object-fit:contain}
+.project-section .section-image-item figcaption{font-size:12px;line-height:1.5;margin-top:8px}
+@media(max-width:760px){.project-section .section-image-item .image-expand{height:170px}}
+
+.closing .eyebrow{margin-bottom:8px}
+
+/* Reserve the same scrollbar space on short and long pages. */
+html{overflow-y:scroll}

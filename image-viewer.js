@@ -25,7 +25,7 @@
       opener = button;
       large.src = img.currentSrc || img.src;
       large.alt = img.alt;
-      const figure = button.closest('figure');
+      const figure = button.closest('.section-image-item') || button.closest('figure');
       const text = figure?.querySelector('figcaption')?.textContent.trim() || '';
       caption.textContent = text;
       caption.hidden = !text;
