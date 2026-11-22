@@ -5,7 +5,7 @@
   const dialog = document.createElement('dialog');
   dialog.className = 'image-viewer';
   dialog.setAttribute('aria-label', 'Enlarged image');
-  dialog.innerHTML = '<button type="button" class="image-viewer-close" aria-label="Close image viewer">×</button><figure><img alt=""><figcaption hidden></figcaption></figure>';
+  dialog.innerHTML = '<button type="button" class="image-viewer-close" aria-label="Close image viewer">×</button><div class="image-viewer-controls" role="group" aria-label="Image zoom"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="reset">Reset</button></div><figure><img alt=""><figcaption hidden></figcaption></figure>';
   document.body.append(dialog);
   const large = dialog.querySelector('img');
   const caption = dialog.querySelector('figcaption');
@@ -26,7 +26,7 @@
       large.src = img.currentSrc || img.src;
       large.alt = img.alt;
       const figure = button.closest('.section-image-item') || button.closest('figure');
-      const text = figure?.querySelector('figcaption')?.textContent.trim() || '';
+      const text = (figure?.querySelectorAll('img').length === 1 ? figure.querySelector('figcaption')?.textContent.trim() : '') || '';
       caption.textContent = text;
       caption.hidden = !text;
       scale = 1; offsetX = 0; offsetY = 0; renderZoom();
@@ -36,6 +36,12 @@
     });
   }
   close.addEventListener('click', () => dialog.close());
+  dialog.querySelector('.image-viewer-controls').addEventListener('click', event => {
+    const action = event.target.dataset.zoom;
+    if (!action) return;
+    scale = action === 'reset' ? 1 : Math.min(5, Math.max(1, scale * (action === 'in' ? 1.25 : 0.8)));
+    offsetX = 0; offsetY = 0; renderZoom();
+  });
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
   dialog.addEventListener('wheel', event => {
     event.preventDefault();

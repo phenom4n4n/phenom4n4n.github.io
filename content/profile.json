@@ -1,0 +1,14 @@
+{
+  "name": "Manan Singh",
+  "title": "Hi, I'm Manan.",
+  "intro": "I study Robotics and Computer Science at Purdue University. I'm passionate about building robots and automation solutions that make the world a better place. For fun, I build and compete with BattleBots.",
+  "about": "This is a home for the things I build and the work behind them. Explore my engineering projects, see the robots in action on YouTube, or follow along on Instagram.",
+  "links": [
+    {"label": "Resume", "url": "documents/resume.pdf"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com/in/manansingh18"},
+    {"label": "YouTube", "url": "https://www.youtube.com/@phenom4n4n"},
+    {"label": "Instagram", "url": "https://www.instagram.com/theboilerbreaker/"}
+  ],
+  "email": "manan.singh.robotics@gmail.com",
+  "projects": ["culverizer", "arena", "fih"]
+}
